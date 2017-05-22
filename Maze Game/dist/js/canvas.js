@@ -5,4 +5,5 @@ window.onload = function(){
     img.src = './images/level2.png'
     ctx.drawImage(img,0,0,1300,740);
     //test
+    //test2
 }
