@@ -4,6 +4,6 @@ window.onload = function(){
     var canvasWidth = window.innerWidth;
     var canvasHeight = window.innerHeight;
     var img = new Image();
-    img.src = './images/lv2.png'
-    ctx.drawImage(img,0,0,1300,740);
-}
+    img.src = './images/level2_1.png'
+    ctx.drawImage(img,0,0,1140,656);
+}   
