@@ -1,10 +1,12 @@
 class Player {
 
 private ball: HTMLElement;
-private posX : number = 0;
-private posY : number = 0;
-private speedX : number = 5;
-private speedY : number = 0;
+public posX : number = 0;
+public posY : number = 610;
+private speedLeft : number = 0;
+private speedRight : number = 5;
+private speedUp : number = 0;
+private speedDown : number = 0;
 private upKey : string
 private downKey : string
 private leftKey : string
@@ -20,47 +22,54 @@ private rightKey : string
         this.ball = document.createElement("ball");
         document.body.appendChild(this.ball);
 
-        this.posX = 0;
-        this.posY = 610;
+        
 
-        console.log(this.posX, this.posY)
-
-        window.addEventListener("keydonw",(event : KeyboardEvent) => this.onKeyDown(event));
-
+        window.addEventListener("keydown",(event : KeyboardEvent) => this.onKeyDown(event));
+        this.move();
+        
     }
     
-
     move(){
-
-        // this.posX = this.speedX;
-        // this.posY = this.speedY;
+        
+        this.posY = this.posY - this.speedUp + this.speedDown;
+        this.posX = this.posX - this.speedLeft + this.speedRight;
 
         this.ball.style.transform = "translate("+this.posX+"px, "+this.posY+"px)";
     
     }
 
-    onKeyDown(event: KeyboardEvent){
-        if(event.key == this.upKey){
-            this.speedX = 0;
-            this.speedY = -5;
-            console.log(event.key)
-        }
-        if(event.key == this.downKey){
-            this.speedX = 0;
-            this.speedY = 5;
-            console.log(event.key)
-        }
-        if(event.key == this.leftKey){
-            this.speedX = -5;
-            this.speedY = 0;
-            console.log(event.key)
-        }
-        if(event.key == this.rightKey){
-            this.speedX = 5;
-            this.speedY = 0;
-            console.log(event.key)
-        }
+    reset(){
+        this.posX = 0; 
+        this.posY = 610;
+        this.speedDown = 0;
+        this.speedUp = 0;
+        this.speedLeft = 0;
+        this.speedRight = 5;
+        
     }
 
-    
+    onKeyDown(event: KeyboardEvent):void{
+        switch(event.key){
+            case this.upKey:
+                this.speedUp = 5;
+                this.speedLeft = this.speedRight = this.speedDown = 0;
+                console.log(event.key)
+                break;
+            case this.downKey:
+                this.speedDown = 5;
+                this.speedLeft = this.speedRight = this.speedUp = 0;;
+                console.log(event.key)
+                break;
+            case this.leftKey:
+                this.speedLeft = 5;
+                this.speedUp = this.speedRight = this.speedDown = 0;
+                console.log(event.key)
+                break;
+            case this.rightKey:
+                this.speedRight = 5;
+                this.speedLeft = this.speedUp = this.speedDown = 0;
+                console.log(event.key)
+                break;
+        }
+    }
 }

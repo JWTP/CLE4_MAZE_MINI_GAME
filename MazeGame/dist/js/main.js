@@ -1,13 +1,36 @@
+var Finish = (function () {
+    function Finish() {
+        this.div = document.createElement('finish');
+        document.body.appendChild(this.div);
+        this.posX = window.innerWidth - 40;
+        this.posY = 100;
+    }
+    Finish.prototype.move = function () {
+        this.div.style.transform = "translate(" + this.posX + "px, " + this.posY + "px)";
+    };
+    return Finish;
+}());
 var Game = (function () {
     function Game() {
         var _this = this;
         this.p = new Player('w', 's', 'a', 'd');
+        this.f = new Finish();
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.gameLoop = function () {
         var _this = this;
         requestAnimationFrame(function () { return _this.gameLoop(); });
         this.p.move();
+        this.f.move();
+        this.collision();
+    };
+    Game.prototype.collision = function () {
+        if (this.f.posX < this.p.posX + 40 &&
+            this.f.posX + 40 > this.p.posX &&
+            this.f.posY < this.p.posY + 40 &&
+            80 + this.f.posY > this.p.posY) {
+            this.p.reset();
+        }
     };
     return Game;
 }());
@@ -18,43 +41,56 @@ var Player = (function () {
     function Player(upKey, downKey, leftKey, rightKey) {
         var _this = this;
         this.posX = 0;
-        this.posY = 0;
-        this.speedX = 5;
-        this.speedY = 0;
+        this.posY = 610;
+        this.speedLeft = 0;
+        this.speedRight = 5;
+        this.speedUp = 0;
+        this.speedDown = 0;
         this.upKey = upKey;
         this.downKey = downKey;
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.ball = document.createElement("ball");
         document.body.appendChild(this.ball);
-        this.posX = 0;
-        this.posY = 610;
-        console.log(this.posX, this.posY);
-        window.addEventListener("keydonw", function (event) { return _this.onKeyDown(event); });
+        window.addEventListener("keydown", function (event) { return _this.onKeyDown(event); });
+        this.move();
     }
     Player.prototype.move = function () {
+        this.posY = this.posY - this.speedUp + this.speedDown;
+        this.posX = this.posX - this.speedLeft + this.speedRight;
         this.ball.style.transform = "translate(" + this.posX + "px, " + this.posY + "px)";
     };
+    Player.prototype.reset = function () {
+        this.posX = 0;
+        this.posY = 610;
+        this.speedDown = 0;
+        this.speedUp = 0;
+        this.speedLeft = 0;
+        this.speedRight = 5;
+    };
     Player.prototype.onKeyDown = function (event) {
-        if (event.key == this.upKey) {
-            this.speedX = 0;
-            this.speedY = -5;
-            console.log(event.key);
-        }
-        if (event.key == this.downKey) {
-            this.speedX = 0;
-            this.speedY = 5;
-            console.log(event.key);
-        }
-        if (event.key == this.leftKey) {
-            this.speedX = -5;
-            this.speedY = 0;
-            console.log(event.key);
-        }
-        if (event.key == this.rightKey) {
-            this.speedX = 5;
-            this.speedY = 0;
-            console.log(event.key);
+        switch (event.key) {
+            case this.upKey:
+                this.speedUp = 5;
+                this.speedLeft = this.speedRight = this.speedDown = 0;
+                console.log(event.key);
+                break;
+            case this.downKey:
+                this.speedDown = 5;
+                this.speedLeft = this.speedRight = this.speedUp = 0;
+                ;
+                console.log(event.key);
+                break;
+            case this.leftKey:
+                this.speedLeft = 5;
+                this.speedUp = this.speedRight = this.speedDown = 0;
+                console.log(event.key);
+                break;
+            case this.rightKey:
+                this.speedRight = 5;
+                this.speedLeft = this.speedUp = this.speedDown = 0;
+                console.log(event.key);
+                break;
         }
     };
     return Player;
