@@ -4,7 +4,7 @@ private ball: HTMLElement;
 public posX : number = 0;
 public posY : number = 610;
 private speedLeft : number = 0;
-private speedRight : number = 5;
+private speedRight : number = 3;
 private speedUp : number = 0;
 private speedDown : number = 0;
 private upKey : string
@@ -44,29 +44,29 @@ private rightKey : string
         this.speedDown = 0;
         this.speedUp = 0;
         this.speedLeft = 0;
-        this.speedRight = 5;
+        this.speedRight = 3;
         
     }
 
     onKeyDown(event: KeyboardEvent):void{
         switch(event.key){
             case this.upKey:
-                this.speedUp = 5;
+                this.speedUp = 3;
                 this.speedLeft = this.speedRight = this.speedDown = 0;
                 console.log(event.key)
                 break;
             case this.downKey:
-                this.speedDown = 5;
+                this.speedDown = 3;
                 this.speedLeft = this.speedRight = this.speedUp = 0;;
                 console.log(event.key)
                 break;
             case this.leftKey:
-                this.speedLeft = 5;
+                this.speedLeft = 3;
                 this.speedUp = this.speedRight = this.speedDown = 0;
                 console.log(event.key)
                 break;
             case this.rightKey:
-                this.speedRight = 5;
+                this.speedRight = 3;
                 this.speedLeft = this.speedUp = this.speedDown = 0;
                 console.log(event.key)
                 break;
