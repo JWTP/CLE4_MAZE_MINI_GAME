@@ -1,3 +1,15 @@
+var Canvas = (function () {
+    function Canvas() {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var canvasWidth = window.innerWidth;
+        var canvasHeight = window.innerHeight;
+        var img = new Image();
+        img.src = './images/level1.png';
+        ctx.drawImage(img, 0, 0, 1137, 656);
+    }
+    return Canvas;
+}());
 var Finish = (function () {
     function Finish() {
         this.div = document.createElement('finish');
@@ -15,6 +27,7 @@ var Game = (function () {
         var _this = this;
         this.p = new Player('w', 's', 'a', 'd');
         this.f = new Finish();
+        this.c = new Canvas();
         requestAnimationFrame(function () { return _this.gameLoop(); });
     }
     Game.prototype.gameLoop = function () {

@@ -2,10 +2,12 @@ class Game{
 
     p: Player;
     f: Finish;
+    c: Canvas;
+    
     constructor(){
         this.p = new Player('w','s','a','d');
         this.f = new Finish();
-
+        this.c = new Canvas();
 
         requestAnimationFrame(() => this.gameLoop());
     }
