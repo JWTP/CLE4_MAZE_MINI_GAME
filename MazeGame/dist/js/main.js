@@ -5,6 +5,8 @@ var Canvas = (function () {
         var canvasWidth = window.innerWidth;
         var canvasHeight = window.innerHeight;
         var img = new Image();
+        img.onload;
+        func;
         img.src = './images/level1.png';
         ctx.drawImage(img, 0, 0, 1137, 656);
     }
