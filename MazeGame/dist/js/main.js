@@ -1,13 +1,13 @@
 var Canvas = (function () {
     function Canvas() {
-        var canvas = document.getElementById('canvas');
+        var canvas = document.getElementsByTagName('canvas')[0];
         var ctx = canvas.getContext('2d');
-        var canvasWidth = window.innerWidth;
-        var canvasHeight = window.innerHeight;
+        canvas.width = 1300;
+        canvas.height = 800;
         var img = new Image();
-        img.src = './images/level2.png';
+        img.src = './images/level1.png';
         img.onload = function () {
-            ctx.drawImage(img, 0, 0, 1140, 656);
+            ctx.drawImage(img, 0, 0, canvas.width, (canvas.height - 50));
         };
     }
     return Canvas;
