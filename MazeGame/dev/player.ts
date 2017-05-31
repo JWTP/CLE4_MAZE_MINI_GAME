@@ -2,7 +2,7 @@ class Player {
 
 private ball: HTMLElement;
 public posX : number = 0;
-public posY : number = 610;
+public posY : number = 640;
 private speedLeft : number = 0;
 private speedRight : number = 3;
 private speedUp : number = 0;
@@ -39,12 +39,7 @@ private rightKey : string
     }
 
     reset(){
-        this.posX = 0; 
-        this.posY = 610;
-        this.speedDown = 0;
-        this.speedUp = 0;
-        this.speedLeft = 0;
-        this.speedRight = 3;
+        window.location.href = "http://localhost/CLE4GAME/level2/MazeGame/dist/"
         
     }
 

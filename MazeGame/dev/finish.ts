@@ -10,8 +10,8 @@ class Finish{
     constructor(){
         this.div = document.createElement('finish');
         document.body.appendChild(this.div);
-        this.posX = window.innerWidth-40 ;
-        this.posY = 100;
+        this.posX = 300 ;
+        this.posY = 150;
     }
 
     move(){
