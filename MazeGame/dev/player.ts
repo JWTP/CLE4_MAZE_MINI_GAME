@@ -38,7 +38,7 @@ private rightKey : string
     
     }
 
-    reset(){
+    reset(){ //dit is de reset
         window.location.href = "http://localhost/CLE4GAME/level2/MazeGame/dist/"
         
     }
