@@ -7,7 +7,7 @@ class Canvas {
         var canvasWidth = window.innerWidth;
         var canvasHeight = window.innerHeight;
         var img = new Image();
-        img.src = './images/level1.png'
+        img.src = './images/level2.png'
         img.onload = function(){
             ctx.drawImage(img,0,0,1140,656);
         }
